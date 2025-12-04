@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proteção Jurídica Médica - Kaio Schroder</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        /* HEADER COM LOGO E NOME */
+        header {
+            background: linear-gradient(135deg, #440804 0%, #6b0d0a 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(68, 8, 4, 0.2);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .logo-container {
+            width: 180px;
+            height: 120px;
+            background: transparent;
+            border-radius: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+            text-align: center;
+            padding: 0;
+        }
+
+        .logo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.2));
+        }
+        .header-text h1 {
+            font-size: 32px;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        .header-text p {
+            font-size: 16px;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        /* SEÇÃO INTRO */
+        .intro-section {
+            max-width: 1200px;
+            margin: 60px auto 40px;
+            padding: 0 20px;
+        }
+
+        .intro-section h2 {
+            font-size: 28px;
+            color: #440804;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        /* ESTATÍSTICAS EM GRID */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid #440804;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: 700;
+            color: #440804;
+            margin: 10px 0;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-source {
+            font-size: 12px;
+            color: #999;
+            margin-top: 8px;
+            font-style: italic;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(68, 8, 4, 0.05), rgba(68, 8, 4, 0.02));
+            border-left: 4px solid #440804;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 8px;
+            font-size: 16px;
+            color: #440804;
+            font-weight: 600;
+        }
+
+        .question-text {
+            font-size: 20px;
+            text-align: center;
+            color: #440804;
+            margin: 30px 0;
+            font-style: italic;
+            font-weight: 600;
+        }
+
+        /* TABELA DE PACOTES */
+        .packages-section {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .packages-section h2 {
+            font-size: 28px;
+            color: #440804;
+            margin-bottom: 40px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        /* CARDS DE PACOTES */
+        .packages-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .package-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .package-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(68, 8, 4, 0.15);
+        }
+
+        .package-card.gold {
+            border: 3px solid #440804;
+            transform: scale(1.05);
+        }
+
+        .package-card.gold:hover {
+            transform: scale(1.05) translateY(-8px);
+        }
+
+        .package-card.gold::before {
+            content: "🌟 MAIS POPULAR";
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #440804;
+            color: white;
+            padding: 6px 20px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            z-index: 10;
+            box-shadow: 0 4px 12px rgba(68, 8, 4, 0.3);
+        }
+
+        .package-header {
+            padding: 30px 20px 20px;
+            text-align: center;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .package-card.gold .package-header {
+            background: linear-gradient(135deg, #FFF8E7 0%, #FFF3D6 100%);
+            border-bottom: 2px solid #440804;
+        }
+
+        .package-icon {
+            font-size: 48px;
+            margin-bottom: 12px;
+        }
+
+        .package-name {
+            font-size: 22px;
+            font-weight: 700;
+            color: #440804;
+            margin-bottom: 8px;
+        }
+
+        .package-price {
+            font-size: 32px;
+            font-weight: 700;
+            color: #440804;
+            margin-bottom: 5px;
+        }
+
+        .package-period {
+            font-size: 13px;
+            color: #999;
+        }
+
+        .package-hours {
+            font-size: 14px;
+            color: #666;
+            margin-top: 8px;
+            font-weight: 600;
+        }
+
+        .package-features {
+            padding: 25px 20px;
+            flex-grow: 1;
+        }
+
+        .package-features ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .package-features li {
+            padding: 8px 0;
+            font-size: 13px;
+            color: #666;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .package-features li:last-child {
+            border-bottom: none;
+        }
+
+        .feature-yes {
+            color: #440804;
+            font-weight: 600;
+        }
+
+        .feature-no {
+            color: #999;
+        }
+
+        .package-cta {
+            padding: 20px;
+            border-top: 2px solid #f0f0f0;
+        }
+
+        .package-card.gold .package-cta {
+            border-top: 2px solid #440804;
+        }
+
+        .btn-contract {
+            width: 100%;
+            padding: 14px 20px;
+            background: linear-gradient(135deg, #440804 0%, #6b0d0a 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-contract:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(68, 8, 4, 0.3);
+        }
+
+        .btn-contract::before {
+            content: "✓";
+            font-size: 16px;
+        }
+
+        /* BENEFÍCIOS */
+        .benefits-section {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .benefits-section h2 {
+            font-size: 28px;
+            color: #440804;
+            margin-bottom: 40px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .benefit-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            border-top: 4px solid #440804;
+            transition: all 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(68, 8, 4, 0.15);
+        }
+
+        .benefit-card h3 {
+            font-size: 18px;
+            color: #440804;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .benefit-card p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        /* ASSESSORIA JURÍDICA */
+        .assessment-section {
+            background: linear-gradient(135deg, #f0f4f8 0%, #d9e2ec 100%);
+            padding: 40px 20px;
+            margin: 60px 0;
+        }
+
+        .assessment-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .assessment-content h2 {
+            font-size: 24px;
+            color: #440804;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+
+        .assessment-box {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            border-left: 5px solid #440804;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .assessment-box h3 {
+            color: #440804;
+            font-size: 16px;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .assessment-box p {
+            color: #666;
+            line-height: 1.8;
+            font-size: 14px;
+        }
+
+        .assessment-list {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .assessment-list li {
+            padding: 8px 0;
+            padding-left: 24px;
+            position: relative;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .assessment-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #440804;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        /* BOTÃO CTA */
+        .cta-section {
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #440804 0%, #6b0d0a 100%);
+            color: white;
+            border: none;
+            padding: 16px 40px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(68, 8, 4, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(68, 8, 4, 0.4);
+        }
+
+        /* FOOTER */
+        footer {
+            background: #440804;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 60px;
+            font-size: 14px;
+        }
+
+        .footer-content p {
+            margin: 8px 0;
+        }
+
+        /* RESPONSIVO */
+        @media (max-width: 768px) {
+            .header-text h1 {
+                font-size: 24px;
+            }
+
+            .intro-section h2,
+            .packages-section h2,
+            .benefits-section h2 {
+                font-size: 22px;
+            }
+
+            .stat-number {
+                font-size: 28px;
+            }
+
+            th, td {
+                padding: 12px 10px;
+                font-size: 12px;
+            }
+
+            .gold-package::before {
+                font-size: 10px;
+                padding: 3px 12px;
+                top: -10px;
+            }
+        }
+    </style>
+<header>
+    <div class="header-container" style="flex-direction: column; text-align: center;">
+        
+        <div class="logo-container" style="width: 320px; height: auto;">
+            <img src="logo_kaio-removebg-preview.png"
+                 alt="Logo Kaio Schroder"
+                 style="width: 100%; height: auto;">
+        </div>
+
+        <div class="header-text" style="margin-top: 10px;">
+                        <p style="font-size: 30px; margin-top: 8px;">
+                BLINDAGEM JURIDICA MÉDICA
+            <p style="font-size: 14px; margin-top: 8px;">
+                Advocacia do Senado Federal | Presidente da Comissão de Direito Médico e Saúde da OAB/Santa Maria-DF
+            
+            <p style="font-size: 14px; opacity: 0.9;">
+                Especialista em Direito Médico | Atuação em Tribunal do Júri
+
+
+            </p>
+        </div>
+
+    </div>
+</header>
+
+    <!-- SEÇÃO INTRO -->
+    <section class="intro-section">
+        <h2>Cenário Crítico para Médicos Brasileiros</h2>
+        <p style="text-align: center; color: #666; margin-bottom: 30px; font-size: 16px;">Dados oficiais revelam a urgência da proteção jurídica preventiva</p>
+        
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-label">Processos Contra Médicos</div>
+                <div class="stat-number">203</div>
+                <p style="margin: 10px 0; color: #440804; font-weight: 600;">Novas ações POR DIA em 2024</p>
+                <div class="stat-source">Fonte: CNJ via Conselho Nacional de Justiça</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Média de Processos</div>
+                <div class="stat-number">1,02</div>
+                <p style="margin: 10px 0; color: #440804; font-weight: 600;">Por médico no Brasil</p>
+                <div class="stat-source">Fonte: Rede NatJus</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Crescimento Ético</div>
+                <div class="stat-number">55%</div>
+                <p style="margin: 10px 0; color: #440804; font-weight: 600;">Aumento no CFM em 4 anos</p>
+                <div class="stat-source">Fonte: Conselho Federal de Medicina</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Total de Ações</div>
+                <div class="stat-number">74.000+</div>
+                <p style="margin: 10px 0; color: #440804; font-weight: 600;">Processos sobre saúde em 2024</p>
+                <div class="stat-source">Fonte: Medicina S/A</div>
+            </div>
+        </div>
+
+        <div class="highlight-box">
+            ⚠️ Já existem MAIS PROCESSOS sobre saúde do que médicos em atividade no Brasil.
+        </div>
+
+        <p style="text-align: center; color: #666; margin-bottom: 15px;">
+            Entre 2021 e 2022, o volume de processos cresceu 19%. Em 2024, saltou para mais de 74.000 ações.
+        </p>
+
+        <div class="question-text">
+            Você está preparado para essa realidade?
+        </div>
+    </section>
+
+    <!-- SEÇÃO DE PACOTES -->
+    <section class="packages-section">
+        <h2>Pacotes de Assessoria Jurídica Preventiva</h2>
+        
+        <div class="packages-cards">
+            <!-- BRONZE -->
+            <div class="package-card">
+                <div class="package-header">
+                    <div class="package-icon">🥉</div>
+                    <div class="package-name">Bronze</div>
+                    <div class="package-price">R$ 199,90</div>
+                    <div class="package-period">/mês</div>
+                    <div class="package-hours">1 hora mensal</div>
+                </div>
+                <div class="package-features">
+                    <ul>
+                        <li><span class="feature-yes">✓</span> Análise 1/mês</li>
+                        <li><span class="feature-no">✗</span> Orientação em caso de PEP</li>
+                        <li><span class="feature-no">✗</span> Defesa Cível</li>
+                        <li><span class="feature-no">✗</span> Defesa Criminal</li>
+                        <li><span class="feature-no">✗</span> Tribunal do Júri</li>
+                        <li><span class="feature-no">✗</span> Análise Publicidade</li>
+                        <li>Desconto Extras: Sem desconto em Extras</li>
+                    </ul>
+                </div>
+                <div class="package-cta">
+                    <button class="btn-contract" onclick="contratar('bronze')">Quero Contratar Esse</button>
+                </div>
+            </div>
+
+            <!-- PRATA -->
+            <div class="package-card">
+                <div class="package-header">
+                    <div class="package-icon">🥈</div>
+                    <div class="package-name">Prata</div>
+                    <div class="package-price">R$ 399,90</div>
+                    <div class="package-period">/mês</div>
+                    <div class="package-hours">2 horas mensais</div>
+                </div>
+                <div class="package-features">
+                    <ul>
+                        <li><span class="feature-yes">✓</span> Análise 2/mês</li>
+                        <li><span class="feature-yes">✓</span> Orientação em caso de PEP</li>
+                        <li><span class="feature-no">✗</span> Atuação em Processo Cível</li>
+                        <li><span class="feature-no">✗</span> Atuação em Processo Criminal</li>
+                        <li><span class="feature-no">✗</span> Tribunal do Júri</li>
+                        <li><span class="feature-yes">✓</span> Análise Publicidade</li>
+                        <li>Desconto Extras: 15%</li>
+                    </ul>
+                </div>
+                <div class="package-cta">
+                    <button class="btn-contract" onclick="contratar('prata')">Quero Contratar Esse</button>
+                </div>
+            </div>
+
+            <!-- OURO (DESTAQUE) -->
+            <div class="package-card gold">
+                <div class="package-header">
+                    <div class="package-icon">🥇</div>
+                    <div class="package-name">Ouro</div>
+                    <div class="package-price">R$ 499,90</div>
+                    <div class="package-period">/mês</div>
+                    <div class="package-hours">4 horas mensais</div>
+                </div>
+                <div class="package-features">
+                    <ul>
+                        <li><span class="feature-yes">✓</span> Análise 4/mês</li>
+                        <li><span class="feature-yes">✓</span> Orientação em caso de PEP</li>
+                        <li><span class="feature-yes">✓</span> Orientação em Ação Cível</li>
+                        <li><span class="feature-yes">✓</span> Atuação em Processo Cível</li>
+                        <li><span class="feature-no">✗</span> Atuação em Processo Criminal</li>
+                        <li><span class="feature-no">✗</span> Tribunal do Júri</li>
+                        <li><span class="feature-yes">✓</span> Análise Publicidade</li>
+                        <li><span class="feature-yes">✓ 🎁 Análise Contrato/Apólice RC</span></li>
+                        <li><span class="feature-yes">✓ 🎁 Registro Marca INPI</span></li>
+                        <li><span class="feature-yes">✓ 🎁 MS Concurso/Residência</span></li>
+                        <li><span class="feature-yes">✓ 🎁 Análise Cobrança Direito Moradia</span></li>
+                        <li>Desconto Extras: 30%</li>
+                    </ul>
+                </div>
+                <div class="package-cta">
+                    <button class="btn-contract" onclick="contratar('ouro')">Quero Contratar Esse</button>
+
+                </div>
+            </div>
+
+            <!-- PLATINA -->
+            <div class="package-card">
+                <div class="package-header">
+                    <div class="package-icon">💎</div>
+                    <div class="package-name">Platina</div>
+                    <div class="package-price">R$ 1.200,00</div>
+                    <div class="package-period">/mês</div>
+                    <div class="package-hours">6 horas mensais</div>
+                </div>
+                <div class="package-features">
+                    <ul>
+                        <li><span class="feature-yes">✓</span> Análise 6/mês</li>
+                        <li><span class="feature-yes">✓</span> Orientação em caso de PEP</li>
+                        <li><span class="feature-yes">✓</span> Orientação em Ação Cível</li>
+                        <li><span class="feature-yes">✓</span> Atuação em Processo Cível</li>
+                        <li><span class="feature-yes">✓</span> Atuação em Processo Criminal</li>
+                        <li><span class="feature-yes">✓</span> Tribunal do Júri</li>
+                        <li><span class="feature-yes">✓</span> Análise Publicidade</li>
+                        <li><span class="feature-yes">✓ 🎁 Análise Contrato/Apólice RC</span></li>
+                        <li><span class="feature-yes">✓ 🎁 Registro Marca INPI</span></li>
+                        <li><span class="feature-yes">✓ 🎁 MS Concurso/Residência</span></li>
+                        <li><span class="feature-yes">✓ 🎁 Análise Cobrança Direito Moradia</span></li>
+                        <li>Desconto Extras: 50%</li>
+                    </ul>
+                </div>
+                <div class="package-cta">
+                    <button class="btn-contract" onclick="contratar('platina')">Quero Contratar Esse</button>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+    <!-- SEÇÃO ASSESSORIA JURÍDICA -->
+    <section class="assessment-section">
+        <div class="assessment-content">
+            <h2>📋 O Que É Assessoria Jurídica Preventiva?</h2>
+            
+            <div class="assessment-box">
+                <h3>Conceito</h3>
+                <p>
+                    A Assessoria Jurídica Preventiva é limitada às horas mensais (não cumuláveis) de cada pacote, 
+                    prestada pelo período de <strong>12 meses</strong>, compreendendo a elaboração dos documentos médicos 
+                    e jurídicos necessários durante o curso do contrato.
+                </p>
+            </div>
+
+            <div class="assessment-box">
+                <h3>Serviços Inclusos</h3>
+                <ul class="assessment-list">
+                    <li><strong>Contratos de Prestação de Serviços Médicos</strong> - Elaboração personalizada e revisão</li>
+                    <li><strong>Soluções Jurídicas</strong> - Para eventuais dúvidas ou questionamentos</li>
+                    <li><strong>Orientações Jurídicas</strong> - Sobre questões relacionadas à prática médica</li>
+                    <li><strong>Análise e Orientação de Publicidade</strong> - Publicações em redes sociais e canais digitais</li>
+                    <li><strong>Notificações Extrajudiciais</strong> - Quando necessárias</li>
+                    <li><strong>Resolução Extrajudicial de Litígios</strong> - Mediação e negociação</li>
+                    <li><strong>Apoio e Sustentação</strong> - Às atividades desenvolvidas pela Contratante</li>
+                </ul>
+            </div>
+
+            <div class="assessment-box">
+                <h3>⏱️ Como Funcionam as Horas?</h3>
+                <p>
+                    <strong>Cada documento elaborado ou revisado consome 1 (uma) hora do pacote mensal.</strong>
+                    Isso significa que há limite de documentos que podem ser atendidos em cada pacote:
+                </p>
+                <ul class="assessment-list" style="margin-top: 15px;">
+                    <li><strong>Bronze:</strong> 1 documento/orientação/reunião</li>
+                    <li><strong>Prata:</strong> 2 documentos/orientações/reuniões</li>
+                    <li><strong>Ouro:</strong> 4 documentos/orientações/reuniões</li>
+                    <li><strong>Platina:</strong> 5 documentos/orientações/reuniões</li>
+                </ul>
+                <p style="margin-top: 12px; color: #440804; font-size: 13px; font-weight: 600;">
+                    <strong>Cada atividade consome 1 hora:</strong> Documento elaborado, Documento revisado, Orientação jurídica ou Reunião de aconselhamento.
+                </p>
+            </div>
+
+            <div class="assessment-box">
+                <h3>Ampliação de Horas</h3>
+                <p>
+                    Havendo necessidade de ampliação do número de horas contratadas, será pactuado aditivo contratual, 
+                    com ajuste proporcional dos honorários advocatícios.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- BENEFÍCIOS -->
+    <section class="benefits-section">
+        <h2>Por Que Contratar Agora?</h2>
+        
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <h3>💰 Economia Garantida</h3>
+                <p>
+                    Custos fixos mensais, sem surpresas. Economize até <strong>40%</strong> em relação a contratações avulsas.
+                </p>
+            </div>
+            <div class="benefit-card">
+                <h3>⚡ Resposta Rápida</h3>
+                <p>
+                    Acesso direto ao especialista com resposta em até <strong>2 horas</strong> em situações emergenciais.
+                </p>
+            </div>
+            <div class="benefit-card">
+                <h3>🛡️ Proteção Total</h3>
+                <p>
+                    Cobertura abrangente com atualização constante e prevenção ativa de riscos profissionais.
+                </p>
+            </div>
+            <div class="benefit-card">
+                <h3>🎯 Especialização</h3>
+                <p>
+                    Foco 100% em <strong>Direito Médico</strong> com conhecimento profundo do setor de saúde.
+                </p>
+            </div>
+            <div class="benefit-card">
+                <h3>💳 Sem Compromisso (1º Mês)</h3>
+                <p>
+                    Sem ônus para cancelamento no primeiro mês. Testou e não ficou satisfeito? Cancele sem custos adicionais.
+                </p>
+            </div>
+            <div class="benefit-card">
+                <h3>📊 Impacto Real</h3>
+                <p>
+                    Uma única defesa judicial pode custar <strong>R$ 50.000+</strong>. Proteja sua carreira agora.
+                </p>
+            </div>
+        </div>
+    </section>
+   
+
+    <!-- SEÇÃO DE RISCO -->
+    <section style="max-width: 1200px; margin: 60px auto; padding: 0 20px;">
+        <div style="background: linear-gradient(135deg, #ffe5e5 0%, #fff0f0 100%); border-left: 5px solid #d32f2f; padding: 30px; border-radius: 12px; margin-bottom: 40px;">
+            <h3 style="color: #d32f2f; margin-bottom: 15px; font-size: 20px;">⚠️ Riscos de Não Se Proteger</h3>
+            <ul style="list-style: none; color: #666;">
+                <li style="padding: 8px 0; padding-left: 24px; position: relative;">
+                    <span style="position: absolute; left: 0; color: #d32f2f;">✗</span>
+                    <strong>Uma única defesa judicial pode custar R$ 50 mil+</strong>
+                </li>
+                <li style="padding: 8px 0; padding-left: 24px; position: relative;">
+                    <span style="position: absolute; left: 0; color: #d32f2f;">✗</span>
+                    <strong>Exposição em processos éticos, cíveis e criminais</strong>
+                </li>
+                <li style="padding: 8px 0; padding-left: 24px; position: relative;">
+                    <span style="position: absolute; left: 0; color: #d32f2f;">✗</span>
+                    <strong>Impacto irreversível na imagem profissional</strong>
+                </li>
+                <li style="padding: 8px 0; padding-left: 24px; position: relative;">
+                    <span style="position: absolute; left: 0; color: #d32f2f;">✗</span>
+                    <strong>Contratos e TCLEs inadequados = porta aberta para processos</strong>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <h2 style="color: #440804; margin-bottom: 25px; font-size: 24px;">Comece Sua Proteção Hoje</h2>
+        
+        <button class="cta-button" onclick="contratar('CONTRATAR AGORA')">CONTRATAR AGORA</button>
+    </section>
+
+ <!-- SEÇÃO DE RISCO -->
+ <script>
+    function contratar(pacote) {
+        const mensagens = {
+            'bronze': 'Olá! Tenho interesse no Pacote BRONZE (R$ 199,90/mês). Gostaria de mais informações.',
+            'prata': 'Olá! Tenho interesse no Pacote PRATA (R$ 399,90/mês). Quero contratar.',
+            'ouro': 'Olá! Tenho interesse no Pacote OURO (R$ 499,90/mês). Gostaria de contratar!',
+            'platina': 'Olá! Tenho interesse no Pacote PLATINA (R$ 1.200,00/mês). Gostaria de mais informações.',
+            'CONTRATAR AGORA': 'Olá! Tenho interesse PROTEÇÃO/BLINDAGEM. Gostaria de mais informações.'
+        };
+
+        const telefone = '5561998724642';
+        const mensagem = encodeURIComponent(mensagens[pacote]);
+        const url = `https://wa.me/${telefone}?text=${mensagem}`;
+
+        window.open(url, '_blank');
+    }
+</script>
+
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div style="margin-bottom: 20px;">
+                <img src="logo_kaio-removebg-preview.png" alt="Logo Kaio Schroder" style="width: 160px; height: auto; filter: brightness(1.2); margin-bottom: 15px;">
+            </div>
+            <p><strong>Kaio Schroder - Advocacia e Consultoria Jurídica</strong></p>
+            <p>Especialista em Direito Médico | Tribunal do Júri</p>
+            <p style="margin-top: 15px; opacity: 0.8;">© 2025 Todos os direitos reservados</p>
+        </div>
+    </footer>
+</body>
+</html>
